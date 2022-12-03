@@ -4,6 +4,7 @@ import classes.foods.*;
 import enumsandinterfaces.*;
 import java.util.Set;
 
+
 public class Main {
     public static void main(String[] args) throws Exception {
         Person znaika = new Person("знайка",0);

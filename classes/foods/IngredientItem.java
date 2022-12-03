@@ -59,6 +59,7 @@ public class IngredientItem<Ingredient, Measurement> {
         hash = 53 * hash + this.measurement.hashCode();
         return hash;
     }
+
     public Measurement getMeasurement() {
         return measurement;
     }
