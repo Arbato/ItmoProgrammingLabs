@@ -24,6 +24,8 @@ public class Rocket implements Place, Thing {
 
     public void goTo(Thing thing){
         ownlocation = thing.getName();
+        //list of thing gets rocket
+        //my current location is cleared
         contents = "";
     }
 

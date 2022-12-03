@@ -9,7 +9,10 @@ public class Money {
         this.dollars = dollars;
         this.pennies = pennies;
     }
-
+    @Override
+    public String toString(){
+        return this.dollars + " dollars " + this.dimes + " dimes " + this.pennies;
+    }
     public int getDimes() {
         return dimes;
     }
@@ -26,6 +29,7 @@ public class Money {
         var hash = this.dollars*100 + dimes*10 + pennies;
         return hash;
     }
+
     public boolean equals(Object m){
         if (m == this) {
             return true;
@@ -33,7 +37,6 @@ public class Money {
         if (!(m instanceof MoonMoney)) {
             return false;
         }
-cd
         return this.hashCode() == m.hashCode();
     }
 }

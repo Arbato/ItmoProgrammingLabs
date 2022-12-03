@@ -1,23 +1,46 @@
 import Characters.Person;
 import classes.*;
-import classes.foods.Foodstufs;
+import classes.foods.*;
 import enumsandinterfaces.*;
+import java.util.Set;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         Person znaika = new Person("знайка",0);
         Person ponchik = new Person("пончик",8);
         Person neznaika = new Person("незнайка",0);
 
         znaika.startSpeaking();
         Table table = new Table();
+
+        Ingredient cheese = new Ingredient("pepperjack", 100, Set.of(Taste.UMAMI, Taste.HOT));
+
+        System.out.println(cheese.toString());
+
+
+        Ingredient oatmeal = new Ingredient("овсянка", 100, Set.of(Taste.UMAMI, Taste.HOT));
+        Ingredient cabbage = new Ingredient("Капуста", 100, Set.of(Taste.SWEET, Taste.COOL));
+        Ingredient carrots = new Ingredient("Морковка", 100, Set.of(Taste.SWEET, Taste.COOL));
+        Ingredient beetroot = new Ingredient("Свекла", 100, Set.of(Taste.SWEET, Taste.COOL));
+
+        Recipe borshRecipe = new Recipe(Set.of(
+                new IngredientItem<Ingredient, Measurment>(cabbage, Measurment.CUP),
+                new IngredientItem<Ingredient, Measurment>(carrots, Measurment.CUP),
+                new IngredientItem<Ingredient, Measurment>(beetroot, Measurment.CUP)));
+
+        Dish borshik = new Dish("борщь", Set.of(
+                new IngredientItem<Ingredient, Measurment>(cabbage, Measurment.CUP),
+                new IngredientItem<Ingredient, Measurment>(carrots, Measurment.CUP),
+                new IngredientItem<Ingredient, Measurment>(beetroot, Measurment.CUP)),
+                borshRecipe);
+
         table.setName("стол");
         ponchik.where(Location.BEHIND, table);
         Foodstufs kasha = new Foodstufs("каша", 4);
         Foodstufs borsh = new Foodstufs("борьщ", 4);
         Plate plate1 = new Plate("plate 1");
         Plate plate2 = new Plate("plate 2");
-        kasha.where(Location.IN, plate1);
+        oatmeal.where(Location.IN, plate1);
         borsh.where(Location.IN, plate2);
 
         ponchik.eat(kasha);
@@ -67,7 +90,8 @@ public class Main {
         Ferriswheel devil = new Ferriswheel();
         devil.setName("Чертого колесо");
         ponchik.workAt(devil);
-        FreeSpinnersSociety fsp = new FreeSpinnersSociety("OCK");
+        Person capitalistPig = new Person("cвин", 0);
+        FreeSpinnersSociety fsp = new FreeSpinnersSociety("OCK", capitalistPig);
         fsp.addMember(ponchik);
 
     }

@@ -16,7 +16,7 @@ public class Dealer {
         if (sum1.equals(sum2)){
             System.out.println("успешная сделка");
             person2.addMoney(-sum1.hashCode());
-            person1.addMoney(sum2.hashCode());
+              person1.addMoney(sum2.hashCode());
         } else {
             System.out.println("не сошлись в цене");
         }

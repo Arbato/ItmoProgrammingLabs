@@ -1,5 +1,6 @@
 package Characters;
 import classes.foods.Foodstufs;
+import classes.foods.Ingredient;
 import enumsandinterfaces.Location;
 import enumsandinterfaces.State;
 import enumsandinterfaces.Thing;
@@ -9,20 +10,26 @@ public class Person implements Thing {
     private State state;
     private int money;
     private int hungerScale;
-    private String contents;
+    private String whereAmI;
 
     public Person(String name, int hungerScale){
         this.name = name;
         this.hungerScale = hungerScale;
     }
+
+    @Override
+    public String toString() {
+        return state + name + " c количеством денег: " + money + " и уровнем голода: " + hungerScale;
+    }
+
     public void workAt(Thing thing){
         System.out.println(this.name+ " работает на " + thing.getName());
     }
-    public void addMoney(int s){
+    public void addMoney(int s){ //todo replace void with smth
         money += s;
     }
     public void goTo(Thing thing){
-        contents = "";
+        whereAmI = "";
     }
 
     public void trade(Person p, int price) {
@@ -34,20 +41,38 @@ public class Person implements Thing {
     }
 
     public void eat(Foodstufs food){
-        if (hungerScale <= food.ammount){
-            food.ammount = food.ammount - hungerScale;
+        if (hungerScale <= food.getAmmount()){
+
+            food.setAmmount(food.getAmmount() - hungerScale);
             hungerScale = 0;
 
-
-            System.out.println(this.name+ " наелся, возможно еда даже осталась");
-
-        } else if (hungerScale > food.ammount){
-            hungerScale = hungerScale - food.ammount;
-            food.ammount = 0;
+            System.out.println(this.name+ " наелся, возможно еда даже осталась"); //todo remove from method print call
+        } else if (hungerScale > food.getAmmount()){
+            hungerScale = hungerScale - food.getAmmount();
+            food.setAmmount(0);
 
             System.out.println(this.name+ " не наелся");
         }
     }
+
+    public boolean equals(Person obj) {
+        if (obj == null) {
+            return false;
+        }
+
+        if (obj.getClass() != this.getClass()) {
+            return false;
+        }
+
+        final Person other = (Person) obj;
+        if ((this.name == null) ? (other.name != null) : !this.name.equals(other.name)) {
+            return false;
+        }
+
+        return true;
+    }
+
+
 
     public void startSpeaking (){
         System.out.println(this.name + " сказал <<");
@@ -57,14 +82,20 @@ public class Person implements Thing {
     }
 
     public void where(Location location, Thing thing) {
-        if (contents == null){
-            contents = this.name+" "+ location.getName() +" " + thing.getName() ;
+        if (whereAmI == null){
+            whereAmI = this.name+" "+ location.getName() +" " + thing.getName() ;
         } else {
-            contents = contents +" " +  this.name+" "+ location.getName() +" " + thing.getName() ;;
+            whereAmI = whereAmI +" " +  this.name+" "+ location.getName() +" " + thing.getName() ;;
         }
-        System.out.println(contents);
+        System.out.println(whereAmI);
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 53 * hash + this.name.hashCode();
+        return hash;
+    }
 
     public void changeState(State state) {
         this.state = state;
@@ -75,6 +106,7 @@ public class Person implements Thing {
             System.out.println(this.name + " заволновался");
         }
     }
+
 
     public void timeWOfood(int x){
         hungerScale = hungerScale + x*2;
