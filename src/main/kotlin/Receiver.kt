@@ -9,7 +9,7 @@ import java.util.*
  * Reciever class, works with collection of people
  */
 
-class Receiver(view: TerminalView) {
+class Receiver(view: ViewMode) {
     private val people: Vector<Person> = Vector<Person>()
     private val creationDate: LocalDateTime = LocalDateTime.now()
     private var view = view
