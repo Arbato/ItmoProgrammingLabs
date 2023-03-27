@@ -81,13 +81,15 @@ class Receiver(view: ViewMode) {
 
         if (newId<1){
             view.fail("ID must be positive!")
-            return
+            throw Exception()
+
         }
 
         for(p in people){
             if (p.getId() == newId){
                 view.fail("This ID already exists!")
-                return
+                throw Exception()
+
             }
         }
         for(p in people){
@@ -118,6 +120,7 @@ class Receiver(view: ViewMode) {
 
         catch (ex: Exception) {
             view.fail("Try again, check your path.")
+            throw Exception()
         }
     }
 

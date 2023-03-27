@@ -20,7 +20,7 @@ interface ViewMode {
 
     fun readCoords(coordinates: Coordinates, scanner: Scanner, person: Person)
     fun getPath():String
-
+    abstract fun runScript(fileName: String)
 
 
 }
