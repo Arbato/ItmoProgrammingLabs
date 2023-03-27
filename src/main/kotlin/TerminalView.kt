@@ -71,12 +71,12 @@ class TerminalView(inputManager:Input, outputManager:Output):ViewMode {
         }
     }
 
-    fun setRec(rec: Receiver) {
+    override fun setRec(rec: Receiver) {
         receiver = rec
     }
 
 
-    fun exit(){
+    override fun exit(){
         println(BLUE+ "Goodbye! See you soon!"+RESET)
         scanner.close()
     }
@@ -312,7 +312,7 @@ class TerminalView(inputManager:Input, outputManager:Output):ViewMode {
         return person
     }
 
-    fun info(people: Vector<Person>, creationDate: LocalDateTime, stackType: String){
+    override fun info(people: Vector<Person>, creationDate: LocalDateTime, stackType: String){
 
             println("$PURPLE<><><><><><><><><><><><><><><><><><><><><><><>$RESET\nA collection of people")
             println(
@@ -320,15 +320,15 @@ class TerminalView(inputManager:Input, outputManager:Output):ViewMode {
                         "$PURPLE<><><><><><><><><><><><><><><><><><><><><><><>$RESET")
     }
 
-    fun infoProblem(){
+    override fun infoProblem(){
         println("""Type can not be defined because collection is empty!""")
     }
 
-    fun print(s:String){
+    override fun print(s:String){
         println(s)
     }
 
-    fun show(people: Vector<Person>) {
+    override fun show(people: Vector<Person>) {
         println("$PURPLE~~~~~~~~~~~~~~~~~~~~~~~$RESET\n")
         for (i in people) {
             println(i.toString())
@@ -336,7 +336,7 @@ class TerminalView(inputManager:Input, outputManager:Output):ViewMode {
         println("$PURPLE~~~~~~~~~~~~~~~~~~~~~~~$RESET\n")
     }
 
-    fun readCoords(coordinates: Coordinates, scanner: Scanner, person: Person) {
+    override fun readCoords(coordinates: Coordinates, scanner: Scanner, person: Person) {
         println("Enter the coordinate x of coordinates:")
         var nextValue = scanner.nextLine()
         coordinates.setX(nextValue.toDouble())
@@ -346,22 +346,17 @@ class TerminalView(inputManager:Input, outputManager:Output):ViewMode {
         person.setCoordinates(coordinates)
     }
 
-    fun getPath():String{
+    override fun getPath():String {
         println("Enter the path to the file where you want to save the data.")
         return scanner.nextLine()
     }
 
-    fun successMessage(type: String) {
-        println("$GREEN$type operation completed successfully!$RESET")
-    }
-    fun success(){
-        println(GREEN+"SUCCESS"+RESET)
-    }
+
     override fun fail(message: String){
         println(RED+"Fail,"+message+RESET)
     }
 
-    fun noFile(){
+   fun noFile(){
         println(RED+"Программа принимает единственный обязательный аргумент - путь к файлу."+RESET)
     }
 }

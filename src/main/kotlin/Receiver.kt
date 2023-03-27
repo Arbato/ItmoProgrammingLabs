@@ -41,9 +41,10 @@ class Receiver(view: TerminalView) {
         if (newbie != null){
             newbie.setId(max_id)
             people.add(newbie)
-            view.success()
+            //view.success()
         } else {
-            view.fail("Adding Person failed!")
+            throw Exception()
+            //view.fail("Adding Person failed!")
         }
     }
 
@@ -92,7 +93,6 @@ class Receiver(view: TerminalView) {
         for(p in people){
             if (p.compareFields(compPerson)){
                 p.setId(newId)
-                view.successMessage("update_id")
                 return
             }
         }
@@ -102,21 +102,18 @@ class Receiver(view: TerminalView) {
         for (p in people){
             if (p.getId() == id){
                 people.remove(p)
-                view.successMessage("remove_by_id")
             }
         }
     }
 
     fun clear(){
         people.removeAllElements()
-        view.successMessage("clear")
 
     }
     fun saveToOther(){
         try {
             var path = view.getPath()
             saveToDataBase(path, people)
-            view.successMessage("save ")
         }
 
         catch (ex: Exception) {
@@ -133,7 +130,6 @@ class Receiver(view: TerminalView) {
             }
         }
         people.removeAll(collector)
-        view.successMessage("remove_greater")
 
     }
 
@@ -145,7 +141,6 @@ class Receiver(view: TerminalView) {
             }
         }
         people.removeAll(collector)
-        view.successMessage("remove_lesser")
     }
 
     fun fHairColor(color: Color){
@@ -173,7 +168,6 @@ class Receiver(view: TerminalView) {
 
     fun hairComparator(){
         people.sortWith(byColor)
-        view.successMessage("sorting by hair color")
     }
 
     fun executeScript(fileName : String){
@@ -182,6 +176,5 @@ class Receiver(view: TerminalView) {
 
     fun reorder(){
         people.reverse()
-        view.successMessage("reorder")
     }
 }
