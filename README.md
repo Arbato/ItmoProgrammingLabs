@@ -1,3 +1,3 @@
-# Ifmolabs
+# Ifmolab1
 ----
-A repository for IFMO programming projects.
+
