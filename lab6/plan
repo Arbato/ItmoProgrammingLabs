@@ -1,0 +1,41 @@
+create jar for client, server, try to send some data between them
+1) create another type of command
+add passing of people from client to server
+
+
+sets of element, int, haircolor arg commands
+server passes them to the client
+client checks each command and asks for the respective data
+sends data in a list? to server
+
+
+modify all arg commands
+add script running
+add save from server
+
+
+
+TCP/IP
+TCP Flags
+flatMap()
+Fold()
+
+
+
+Шаблон декоратор, фасад
+
+//english
+//150-157 grammar to study
+
+lab 7 plan
+
+add request commands command
+add transaction
+add database
+add
+
+
+
+
+
+
